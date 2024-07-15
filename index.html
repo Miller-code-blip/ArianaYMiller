@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi amorcito?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #ff69b4;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 2px solid #ff69b4;
+            background-color: #000;
+            color: #ff69b4;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background-color: #ff69b4;
+            color: #000;
+        }
+        #noButton {
+            position: absolute;
+        }
+        .hidden {
+            display: none;
+        }
+        #celebration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            pointer-events: none;
+        }
+        .heart {
+            width: 50px;
+            height: 50px;
+            background-color: #ff69b4;
+            position: absolute;
+            animation: rise 2s infinite;
+            border-radius: 50% 50% 0 0;
+            transform: rotate(-45deg);
+        }
+        .heart::before, .heart::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background-color: #ff69b4;
+            position: absolute;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+        .heart::after {
+            top: 0;
+            left: -25px;
+        }
+        @keyframes rise {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-800px); }
+        }
+        .images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .images img {
+            margin: 10px;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #ff69b4;
+        }
+    </style>
+</head>
+<body>
+    <h1>¿Quieres ser mi amorcito?</h1>
+    <button id="yesButton" class="button">Sí</button>
+    <button id="noButton" class="button">No</button>
+
+    <div id="celebration" class="hidden">
+        <div class="images">
+            <img src="1.jpeg" alt="Image 1">
+            <img src="2.jpeg" alt="Image 2">
+            <img src="3.jpeg" alt="Image 3">
+            <img src="4.jpeg" alt="Image 4">
+            <img src="5.jpeg" alt="Image 5">
+            <img src="6.jpeg" alt="Image 6">
+            <img src="7.jpeg" alt="Image 7">
+            <img src="8.jpeg" alt="Image 8">
+            <img src="9.jpeg" alt="Image 9">
+            <img src="10.jpeg" alt="Image 10">
+            <img src="11.jpeg" alt="Image 11">
+            <img src="12.jpeg" alt="Image 12">
+            <img src="14.jpeg" alt="Image 13">
+            <img src="15.jpeg" alt="Image 14">
+            <img src="16.jpeg" alt="Image 15">
+        </div>
+        <div id="message" class="hidden">Sabía que aceptarías y quiero que sepas lo mucho que te quiero. ¡Te AMO Y TE ADOROOOO MI CHULA!</div>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const celebration = document.getElementById('celebration');
+        const message = document.getElementById('message');
+
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noButton.clientWidth);
+            const y = Math.random() * (window.innerHeight - noButton.clientHeight);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+
+        yesButton.addEventListener('click', () => {
+            celebration.classList.remove('hidden');
+            message.classList.remove('hidden');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                celebration.appendChild(heart);
+            }
+        });
+    </script>
+</body>
+</html>
